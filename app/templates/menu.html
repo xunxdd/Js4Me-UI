@@ -1,0 +1,39 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar app-top-bar bar-positive">
+      <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="viewContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+	<ion-side-menu side="left" class="menu">
+		<ion-header-bar  menu-close  nav-clear>
+			<ion-item class="item item-thumbnail-left">
+				<img src="img/js4me.png" alt="My JavaScript Gallore">
+			</ion-item>
+		</ion-header-bar>
+		<ion-content class="has-header">
+			<ion-list>
+        <ion-item nav-clear menu-close ui-sref="app.gallery" class="item item-icon-right" ui-sref-active="active">Latest JS Feeds
+          <i class="icon ion-ios-paper-outline button-small"></i>
+        </ion-item>
+        <ion-item nav-clear menu-close ui-sref="app.blogs"  class="item item-icon-right" ui-sref-active="active">JS Guys / Blogs
+          <i class="icon ion-ios-person-outline button-small"></i>
+        </ion-item>
+        <ion-item><h3  class="bar-white">Videos Worth Watching</h3></ion-item>
+        <ion-item nav-clear menu-close ng-repeat="year in vm.availableVideoYears" ui-sref="app.videos({year: year})"
+                  ui-sref-active="active" class="item item-icon-right padding-left ">{{year}}
+            <i class="icon ion-ios-videocam-outline button-small"></i>
+        </ion-item>
+        <ion-item><h3  class="bar-white">Amazon Best Selling Books</h3></ion-item>
+        <ion-item nav-clear menu-close ng-repeat="topic in vm.availableBookTopics" ui-sref="app.books({topic: topic.name})"
+                  ui-sref-active="active" class="item item-icon-right padding-left ">{{topic.title}}
+          <i class="icon ion-ios-book-outline button-small"></i>
+        </ion-item>
+			</ion-list>
+		</ion-content>
+
+	</ion-side-menu>
+</ion-side-menus>
