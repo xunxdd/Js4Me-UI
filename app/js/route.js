@@ -19,13 +19,25 @@
           controllerAs: 'vm',
           templateUrl: 'templates/menu.html'
         })
-        .state('app.gallery', {
-          url: "/gallery",
+        .state('app.newsfeeds', {
+          url: "/newsfeeds",
           cache: false,
           views: {
             viewContent: {
-              templateUrl: "templates/gallery.html",
-              controller: 'GalleryController',
+              templateUrl: "templates/newsfeeds.html",
+              controller: 'NewsFeedsController',
+              bindToController: true,
+              controllerAs: 'vm'
+            }
+          }
+        })
+        .state('app.blogfeeds', {
+          url: "/blogfeeds",
+          cache: false,
+          views: {
+            viewContent: {
+              templateUrl: "templates/blogfeeds.html",
+              controller: 'BlogFeedsController',
               bindToController: true,
               controllerAs: 'vm'
             }
@@ -68,7 +80,7 @@
           }
         });
 
-      $urlRouterProvider.otherwise('app/gallery');
+      $urlRouterProvider.otherwise('app/newsfeeds');
 
     }
 

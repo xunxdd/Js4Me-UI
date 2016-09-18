@@ -1,0 +1,31 @@
+<ion-view view-title="JavaScript Lastest Feeds">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header">
+
+    <img src="img/load.gif" ng-if="vm.isLoadingBlogs"/>
+
+    <div class="card" ng-repeat="blogSrc in vm.blogs" ng-if="!vm.isLoadingBlogs">
+      <div class="item-divider" ng-click="vm.expandFeed(blogSrc)">
+        <div class="circled {{blogSrc.class}}"><span class="feed-text-center">{{blogSrc.name.substring(0, 1) }}</span>
+        </div>
+        {{blogSrc.name}}
+      </div>
+      <div class="text-small">
+       {{blogSrc.data.length}} articles, latest published at {{blogSrc.data[0].pubdate | date:"MM/dd/yyyy"}}
+      </div>
+      <img src="img/load.gif" style="width: 50px" ng-if="!blogSrc.data || blogSrc.data.length===0"/>
+      <div ng-click="vm.openPostInBrowser(blog)" class="item item-text-wrap" ng-repeat="blog in blogSrc.data"
+           ng-show="blogSrc.open">
+        <div class="button-small">{{blog.date | date:"MM/dd/yyyy 'at' h:mma"}}
+          <span><b>{{blog.author|| 'anonymous' }}</b></span>
+        </div>
+        <div><b>{{blog.title}}</b></div>
+        <div ng-bind-html="blog.summary || ''" class="feed-summary"></div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

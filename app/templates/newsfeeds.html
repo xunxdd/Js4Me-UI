@@ -1,0 +1,29 @@
+<ion-view view-title="JavaScript Lastest Feeds">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content class="has-header">
+    <img src="img/load.gif" ng-if="vm.isLoadingFeeds"/>
+
+    <div class="card" ng-repeat="feedSrc in vm.feeds" ng-if="!vm.isLoadingFeeds">
+      <div class="item-divider" ng-click="vm.expandFeed(feedSrc)">
+        <div class="circled {{feedSrc.class}}">
+          <span class="feed-text-center">{{feedSrc.name.substring(0, 1) }}</span></div>
+        {{feedSrc.name}}
+      </div>
+      <img src="img/load.gif" style="width: 50px" ng-if="!feedSrc.data || feedSrc.data.length===0"/>
+
+      <div ng-click="vm.openPostInBrowser(post)" class="item item-text-wrap" ng-repeat="post in feedSrc.data"
+           ng-show="feedSrc.open">
+        <div class="button-small">{{post.date | date:"MM/dd/yyyy 'at' h:mma"}}
+          by <b>{{post.author || 'anonymous'}}</b>
+        </div>
+        <div><b>{{post.title}}</b></div>
+        <div ng-bind-html="post.summary || ''" class="feed-summary"></div>
+      </div>
+    </div>
+
+
+     </ion-content>
+</ion-view>
